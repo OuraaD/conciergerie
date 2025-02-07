@@ -1,100 +1,116 @@
-import Image from "next/image";
+'use client'; // Assurez-vous que le fichier est un composant client
+
+import { useRouter } from "next/navigation"; // Utiliser next/navigation pour le client
+import { Button } from "@/components/ui/button"; // Si tu as une composant Button
+import { motion } from "framer-motion"; // Pour l'animation
+import { MapPin, Calendar } from "lucide-react"; // Icônes pour le contact
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const router = useRouter();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* Header */}
+      <header className="bg-white shadow-md">
+        <nav className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+          <h1 className="text-2xl font-semibold text-teal-600">Conciergerie Immobilière</h1>
+          <ul className="flex space-x-8 text-gray-600">
+            <li onClick={() => router.push("/")}>Accueil</li>
+            <li onClick={() => router.push("/services")}>Nos Services</li>
+            <li onClick={() => router.push("/tarifs")}>Tarifs</li>
+            <li onClick={() => router.push("/faq")}>FAQ</li>
+            <li onClick={() => router.push("/contact")}>Contact</li>
+          </ul>
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <section className="bg-teal-100 text-teal-800 py-32">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl font-bold"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Votre Partenaire en Conciergerie Immobilière
+          </motion.h2>
+          <p className="mt-4 text-lg">
+            Des services sur mesure pour gérer et valoriser vos biens immobiliers.
+          </p>
+          <Button className="mt-6 bg-white text-teal-600 hover:text-white hover:bg-teal-700">
+            Demander une Consultation
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-24">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Nos Services</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <h3 className="text-xl font-semibold text-teal-600">Gestion de Propriété</h3>
+            <p className="mt-2 text-gray-600">Nous gérons vos biens immobiliers pour une tranquillité d'esprit totale.</p>
+          </div>
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <h3 className="text-xl font-semibold text-teal-600">Vente et Location</h3>
+            <p className="mt-2 text-gray-600">Optimisez la vente et la location de vos biens grâce à nos services experts.</p>
+          </div>
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <h3 className="text-xl font-semibold text-teal-600">Assistance Personnalisée</h3>
+            <p className="mt-2 text-gray-600">Des solutions sur mesure pour tous vos besoins immobiliers.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="bg-teal-50 py-24">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Contactez-nous</h2>
+        <div className="max-w-2xl mx-auto">
+          <form className="bg-white p-8 shadow-lg rounded-xl">
+            <label className="block text-gray-600 mb-2">Nom complet</label>
+            <input
+              type="text"
+              placeholder="Votre nom"
+              className="w-full border rounded-xl px-4 py-2 mb-4 focus:ring-2 focus:ring-teal-400"
+            />
+            <label className="block text-gray-600 mb-2">Adresse Email</label>
+            <input
+              type="email"
+              placeholder="Votre email"
+              className="w-full border rounded-xl px-4 py-2 mb-4 focus:ring-2 focus:ring-teal-400"
+            />
+            <label className="block text-gray-600 mb-2">Message</label>
+            <textarea
+              placeholder="Écrivez votre message ici..."
+              className="w-full border rounded-xl px-4 py-2 mb-4 focus:ring-2 focus:ring-teal-400"
+            ></textarea>
+            <Button className="w-full bg-teal-600 text-white hover:bg-teal-700">
+              Envoyer le Message
+            </Button>
+          </form>
+        </div>
+      </section>
+
+      {/* Google Maps */}
+      <section className="py-24">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Notre Emplacement</h2>
+        <div className="max-w-7xl mx-auto">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093707!2d144.95373521550423!3d-37.81621897975179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0727e7f4fcb6936!2zUGFyY2UgU3QsIE1lbGJvdXJuZQ!5e0!3m2!1sen!2sau!4v1614820661283!5m2!1sen!2sau"
+            width="100%"
+            height="400"
+            className="rounded-xl border-2 border-teal-400"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-12">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-sm">© 2025 Conciergerie Immobilière. Tous droits réservés.</p>
+        </div>
       </footer>
     </div>
   );
